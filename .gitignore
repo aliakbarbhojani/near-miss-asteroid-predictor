@@ -1,0 +1,11 @@
+# Secrets - never commit your API key
+.env
+
+# Virtual environment - big, and anyone can rebuild it from requirements.txt
+venv/
+
+# Python's cache files
+__pycache__/
+*.pyc
+
+ROADMAP.md
