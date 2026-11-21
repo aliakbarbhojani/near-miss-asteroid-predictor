@@ -33,6 +33,5 @@ python fetch.py
 | ------------------ | ------------------------------------------------------- |
 | `fetch.py`         | Calls the NASA API and prints what comes back           |
 | `.env`             | Your API key (private, ignored by git)                  |
-| `.env.example`     | Shows what `.env` should look like, without a real key  |
 | `requirements.txt` | The packages this project needs                         |
 | `.gitignore`       | Files git should never track                            |
