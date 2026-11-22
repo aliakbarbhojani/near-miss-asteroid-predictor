@@ -1,5 +1,5 @@
 import os
-from datetime import date, datetime, timedelta
+from datetime import date, timedelta
 import pandas as pd
 
 import requests
@@ -62,7 +62,6 @@ end_date = date(2026, 11, 30)
 all_asteroids = []
 week = start_date
 
-# Loop through the date range in weekly increments, fetching and extracting asteroid data for each week.
 while week <= end_date:
     week_end = min(week + timedelta(days=6), end_date)
 
