@@ -1,4 +1,6 @@
 import os
+from datetime import date, datetime, timedelta
+import pandas as pd
 
 import requests
 from dotenv import load_dotenv
@@ -53,12 +55,23 @@ API_KEY = os.getenv("NASA_API_KEY")
 # Set the base URL for the NASA NEO API.
 url = "https://api.nasa.gov/neo/rest/v1/feed"
 
-# Fetch the asteroid data for the specified week.
-data = fetch_week(start_date="2026-11-01", end_date="2026-11-07")
-print(data.keys())
+#loop through a month and select 7 days at a time to join together.
+start_date = date(2026, 11, 1)
+end_date = date(2026, 11, 30)
 
-# Extract the relevant asteroid data and save it to a CSV file.
-asteroids_data = extract_asteroids(data)
-save_csv(asteroids_data, "asteroids_data.csv")
+all_asteroids = []
+week = start_date
 
+while week <= end_date:
+    week_end = min(week + timedelta(days=6), end_date)
 
+    print(f"Fetching data from {week} to {week_end}")
+    data = fetch_week(start_date=week, end_date=week_end)
+
+    asteroids_data = extract_asteroids(data)
+
+    all_asteroids.extend(asteroids_data)
+
+    week = week_end + timedelta(days=1)
+
+save_csv(all_asteroids, "asteroids_data.csv")
